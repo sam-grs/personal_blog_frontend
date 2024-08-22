@@ -1,4 +1,11 @@
-export function Home() {
+import { FC } from "react";
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+export const Home: FC<Props> = ({ title, description }) => {
   return (
     <div
       style={{
@@ -33,7 +40,12 @@ export function Home() {
             width="400px"
           />
         </div>
+
+        <div>
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </div>
       </div>
     </div>
   );
-}
+};
