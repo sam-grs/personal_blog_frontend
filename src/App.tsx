@@ -1,6 +1,6 @@
-import { Count } from "./pages/Count/Count";
+import { Count } from "./pages/playground/count/Count";
 import { Home } from "./pages/home/Home";
-import { Task } from "./pages/Task/Task";
+import { Task } from "./pages/playground/task/Task";
 
 export default function App() {
   return (
