@@ -1,14 +1,18 @@
-import { Count } from "./pages/playground/count/Count";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Footer } from "./components/footer/Footer";
+import { Header } from "./components/header/Header";
 import { Home } from "./pages/home/Home";
-import { Task } from "./pages/playground/task/Task";
+import { Register } from "./pages/register/Register";
 
 export default function App() {
   return (
-    <>
-      {/* <Home title="Título da publicação" description="Descrição" />
-      <Count /> */}
-
-      <Task />
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
