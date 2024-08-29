@@ -1,9 +1,10 @@
-import { Input, Button } from "components";
+import { RotatingLines } from "react-loader-spinner";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { Input, Button } from "components";
 import { UserLogin } from "models";
-import { AuthContext } from "contexts/AuthContext";
-import { RotatingLines } from "react-loader-spinner";
+import { AuthContext } from "contexts";
 
 export function Login() {
   const navigate = useNavigate();
