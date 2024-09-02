@@ -26,7 +26,8 @@
       "pages/*": ["pages/*"],
       "models/*": ["models/*"],
       "contexts/*": ["contexts/*"],
-      "services/*": ["services/*"]
+      "services/*": ["services/*"],
+      "routes/*": ["routes/*"]
     }
   },
   "include": ["src"]

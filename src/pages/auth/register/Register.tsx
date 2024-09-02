@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { User } from "models";
 import { auth } from "services";
 import { RotatingLines } from "react-loader-spinner";
+import { routes } from "routes";
 
 const initialValues = {
   id: "0",
@@ -21,7 +22,7 @@ export function Register() {
 
   useEffect(() => {
     if (user.id !== "0") {
-      navigate("/login");
+      navigate(routes.login);
     }
   }, [!!user]);
 
@@ -97,10 +98,11 @@ export function Register() {
           value={savePassword}
           onChange={(e: ChangeEvent<HTMLInputElement>) => handleSavePassword(e)}
         />
-
-        <Button color="text-indigo-700" background="none">
-          <Link to="/login">Voltar</Link>
-        </Button>
+        <Link to={routes.login}>
+          <Button color="text-indigo-700" fullWidth={true} background="none">
+            Voltar
+          </Button>
+        </Link>
 
         <Button type="submit">
           {isLoading ? (

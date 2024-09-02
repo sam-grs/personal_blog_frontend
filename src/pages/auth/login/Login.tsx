@@ -5,16 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { Input, Button } from "components";
 import { UserLogin } from "models";
 import { AuthContext } from "contexts";
+import { routes } from "routes";
 
 export function Login() {
   const navigate = useNavigate();
   const [userLogin, setUserLogin] = useState<UserLogin>({} as UserLogin); // aqui chama o user sem precisar colocar os valores
   const { user, handleLogin, isLoading } = useContext(AuthContext);
-  console.log("userLogin", userLogin);
 
   useEffect(() => {
     if (user.token !== "") {
-      navigate("/");
+      navigate(routes.home);
     }
   }, [user]);
 
