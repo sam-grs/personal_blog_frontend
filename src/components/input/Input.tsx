@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FC } from "react";
 
 type InputProps = {
-  name?: string;
+  name: string;
   type?: "text" | "email" | "password" | "date" | "number";
   placeholder: string;
   value?: string;

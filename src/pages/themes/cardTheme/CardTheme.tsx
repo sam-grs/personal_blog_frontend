@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { Theme } from "models";
+import { Button } from "components";
 
 type ThemeProps = { theme: Theme };
 
@@ -14,18 +15,12 @@ export function CardTheme({ theme }: ThemeProps) {
       <p className="p-8 text-3xl bg-slate-200 h-full">
         Descricao tema: {theme.about}
       </p>
-      <div className="flex">
-        <Link
-          to={`/edit-theme/${theme.id}`}
-          className="w-full text-slate-100 bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2"
-        >
-          <button>Editar</button>
+      <div className="grid grid-cols-2 gap-5 mt-5">
+        <Link to={`/edit-theme/${theme.id}`}>
+          <Button fullWidth={true}>Editar</Button>
         </Link>
-        <Link
-          to={`/delete-theme/${theme.id}`}
-          className="text-slate-100 bg-red-400 hover:bg-red-700 w-full flex items-center justify-center"
-        >
-          <button>Deletar</button>
+        <Link to={`/delete-theme/${theme.id}`}>
+          <Button fullWidth={true}>Deletar</Button>
         </Link>
       </div>
     </div>

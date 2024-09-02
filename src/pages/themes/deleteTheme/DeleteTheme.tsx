@@ -3,7 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Theme } from "models";
 import { AuthContext } from "contexts";
-import { del, find } from "services";
+import { routes } from "routes";
+import { Button } from "components";
+import { deleteItem, findId } from "../crud";
 
 export function DeleteTheme() {
   const navigate = useNavigate();
@@ -12,48 +14,21 @@ export function DeleteTheme() {
   const { user, handleLogout } = useContext(AuthContext);
 
   const token = user.token;
-  const back = () => navigate("/login");
+  const back = () => navigate(routes.themes);
 
-  //   ver se o useEffect dará erro
   useEffect(() => {
+    if (id !== undefined) {
+      findId(setTheme, token, id, handleLogout);
+    }
+
     if (token === "") {
       alert("Você precisa estar logado");
-      back();
+      navigate(routes.login);
     }
+  }, [id, token]);
 
-    if (id !== undefined) {
-      findId(id);
-    }
-  }, [token, id]);
-
-  async function findId(id: string) {
-    try {
-      await find(`/temas/${id}`, setTheme, {
-        headers: {
-          Authorization: token,
-        },
-      });
-    } catch (err: any) {
-      if (err.toStrig().includes("403")) {
-        alert("O token expirou, favor logar novamente");
-        handleLogout();
-      }
-    }
-  }
-
-  async function deleteTheme() {
-    try {
-      await del(`/temas/${id}`, {
-        headers: {
-          Authorization: token,
-        },
-      });
-
-      alert("Tema apagado com sucesso");
-    } catch (error) {
-      alert("Erro ao apagar o Tema");
-    }
-
+  function deleteTheme() {
+    deleteItem(token, id);
     back();
   }
 
@@ -71,18 +46,12 @@ export function DeleteTheme() {
         </header>
         <p className="p-8 text-3xl bg-slate-200 h-full">{theme.about}</p>
         <div className="flex">
-          <button
-            className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2"
-            onClick={back}
-          >
+          <Button onClick={back} fullWidth={true}>
             Não
-          </button>
-          <button
-            className="w-full text-slate-100 bg-indigo-400 hover:bg-indigo-600 flex items-center justify-center"
-            onClick={deleteTheme}
-          >
+          </Button>
+          <Button onClick={deleteTheme} fullWidth={true}>
             Sim
-          </button>
+          </Button>
         </div>
       </div>
     </div>

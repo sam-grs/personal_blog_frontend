@@ -4,35 +4,22 @@ import { useNavigate } from "react-router-dom";
 
 import { Theme } from "models";
 import { AuthContext } from "contexts";
-import { find } from "services";
+import { routes } from "routes";
 import { CardTheme } from "../cardTheme";
+import { findId } from "../crud";
 
 export function ThemeList() {
   const [themes, setThemes] = useState<Theme[]>([]);
   const navigate = useNavigate();
-
-  const { user, handleLogout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const token = user.token;
 
-  async function findTheme() {
-    try {
-      await find("/temas", setThemes, {
-        headers: { Authorization: token },
-      });
-    } catch (err: any) {
-      if (err.toString().includes("403")) {
-        alert("O token expirou, favor logar novamente");
-        handleLogout();
-      }
-    }
-  }
-
   useEffect(() => {
-    findTheme(); // qualquer coisa mudar
+    if (!themes.length) findId(setThemes, token);
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate("/login");
+      navigate(routes.login);
     }
   }, [token, themes.length]);
 
@@ -48,6 +35,7 @@ export function ThemeList() {
           wrapperClass="dna-wrapper mx-auto"
         />
       )}
+
       <div className="flex justify-center w-full my-4">
         <div className="container flex flex-col">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

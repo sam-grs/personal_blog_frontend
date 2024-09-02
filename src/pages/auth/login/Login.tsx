@@ -9,7 +9,8 @@ import { routes } from "routes";
 
 export function Login() {
   const navigate = useNavigate();
-  const [userLogin, setUserLogin] = useState<UserLogin>({} as UserLogin); // aqui chama o user sem precisar colocar os valores
+  // pode dar erro de uncontroled
+  const [userLogin, setUserLogin] = useState<UserLogin>({} as UserLogin);
   const { user, handleLogin, isLoading } = useContext(AuthContext);
 
   useEffect(() => {
