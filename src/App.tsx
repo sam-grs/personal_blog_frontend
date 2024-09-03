@@ -8,8 +8,10 @@ import {
   Login,
   Register,
   ThemeList,
-  FormTheme,
+  ThemeForm,
   DeleteTheme,
+  ListPosts,
+  PostForm,
 } from "pages";
 
 export default function App() {
@@ -24,9 +26,14 @@ export default function App() {
             <Route path={routes.register} element={<Register />} />
             <Route path={routes.login} element={<Login />} />
             <Route path={routes.themes} element={<ThemeList />} />
-            <Route path={routes.themesRegistration} element={<FormTheme />} />
-            <Route path={routes.editTheme} element={<FormTheme />} />
+            <Route path={routes.themesRegistration} element={<ThemeForm />} />
+            <Route path={routes.editTheme} element={<ThemeForm />} />
             <Route path={routes.deleteTheme} element={<DeleteTheme />} />
+            <Route path={routes.posts} element={<ListPosts />} />
+
+            <Route path={routes.registerPosts} element={<PostForm />} />
+            <Route path={routes.editPost} element={<PostForm />} />
+            <Route path={routes.deletePost} element={<PostForm />} />
           </Routes>
         </div>
         <Footer />
