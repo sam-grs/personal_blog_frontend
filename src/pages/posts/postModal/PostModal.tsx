@@ -3,7 +3,7 @@ import "reactjs-popup/dist/index.css";
 
 import { PostForm } from "../postForm";
 import { Button } from "components";
-import "./ModalPostagem.css";
+import "./PostModal.css";
 
 export function PostModal() {
   return (
