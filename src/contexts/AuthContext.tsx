@@ -34,7 +34,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       await auth(`/usuarios/logar`, userLogin, setUser);
       alert("Usuário logado!");
-      setIsLoading(false);
     } catch (err) {
       console.log(err);
       alert("Dados incorretos");

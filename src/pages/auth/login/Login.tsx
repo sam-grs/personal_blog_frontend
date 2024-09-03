@@ -1,19 +1,21 @@
-import { Input, Button } from "components";
+import { RotatingLines } from "react-loader-spinner";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { Input, Button } from "components";
 import { UserLogin } from "models";
-import { AuthContext } from "contexts/AuthContext";
-import { RotatingLines } from "react-loader-spinner";
+import { AuthContext } from "contexts";
+import { routes } from "routes";
 
 export function Login() {
   const navigate = useNavigate();
-  const [userLogin, setUserLogin] = useState<UserLogin>({} as UserLogin); // aqui chama o user sem precisar colocar os valores
+  // pode dar erro de uncontroled
+  const [userLogin, setUserLogin] = useState<UserLogin>({} as UserLogin);
   const { user, handleLogin, isLoading } = useContext(AuthContext);
-  console.log("userLogin", userLogin);
 
   useEffect(() => {
     if (user.token !== "") {
-      navigate("/");
+      navigate(routes.home);
     }
   }, [user]);
 

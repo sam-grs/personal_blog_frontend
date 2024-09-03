@@ -12,6 +12,7 @@ export default defineConfig({
       models: path.resolve(__dirname, "./src/models"),
       contexts: path.resolve(__dirname, "./src/contexts"),
       services: path.resolve(__dirname, "./src/services"),
+      routes: path.resolve(__dirname, "./src/routes"),
     },
   },
 });

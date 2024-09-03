@@ -1,34 +1,38 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "contexts/AuthContext";
+import { Link } from "react-router-dom";
+
+import { AuthContext } from "contexts";
+import { routes } from "routes";
 
 export function Header() {
-  const navigate = useNavigate();
-  const { handleLogout } = useContext(AuthContext);
+  const { user, handleLogout } = useContext(AuthContext);
 
   function logout() {
     handleLogout();
     alert("Usuário foi desconectado");
-    navigate("/");
   }
 
   return (
     <div className="flex justify-between p-4 bg-indigo-700 text-white w-full text-lg">
-      <Link to="/" className="text-2xl font-bold">
+      <Link to={routes.home} className="text-2xl font-bold">
         Blog Pessoal
       </Link>
 
-      <ul className="flex gap-4">
-        <li>Postagens</li>
-        <li>Temas</li>
-        <li>Cadastrar Tema</li>
-        <li>Perfil</li>
-        <li>
-          <Link to="" onClick={logout}>
+      {user.token === "" ? (
+        <div className="flex gap-4">
+          <Link to={routes.login}>Logar</Link>
+        </div>
+      ) : (
+        <div className="flex gap-4">
+          <Link to={routes.posts}>Postagens</Link>
+          <Link to={routes.themes}>Temas</Link>
+          <Link to={routes.themesRegistration}>Cadastrar Tema</Link>
+          <Link to={routes.profile}>Perfil</Link>
+          <Link to={routes.home} onClick={logout}>
             Sair
           </Link>
-        </li>
-      </ul>
+        </div>
+      )}
     </div>
   );
 }
