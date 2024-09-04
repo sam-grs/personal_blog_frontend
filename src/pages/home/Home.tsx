@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { Button } from "components";
 import { ListPosts, PostModal } from "../posts";
+import { Link } from "react-router-dom";
+import { routes } from "routes";
 
 export const Home: FC = () => {
   return (
@@ -14,7 +16,9 @@ export const Home: FC = () => {
 
             <div className="flex justify-around gap-4">
               <PostModal />
-              <Button>Ver postagens</Button>
+              <Link to={routes.posts}>
+                <Button>Ver postagens</Button>
+              </Link>
             </div>
           </div>
 

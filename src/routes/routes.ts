@@ -1,11 +1,11 @@
 export const routes = {
-  home: "/",
+  initial: "/",
+  home: "/home",
   login: "/login",
   register: "/register",
   profile: "/profile",
 
   posts: "/posts",
-  registerPosts: "/register-posts",
   editPost: "/edit-post/:id",
   deletePost: "/delete-post/:id",
 

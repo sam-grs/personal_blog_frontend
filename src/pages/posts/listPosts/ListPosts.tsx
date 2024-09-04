@@ -16,9 +16,10 @@ export function ListPosts() {
 
   useEffect(() => {
     findPost();
+
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.home);
+      navigate(routes.login);
     }
   }, [token, posts.length]);
 
@@ -29,8 +30,8 @@ export function ListPosts() {
           Authorization: token,
         },
       });
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
+    } catch (err: any) {
+      if (err.toString().includes("403")) {
         alert("O token expirou, favor logar novamente");
         handleLogout();
       }
@@ -50,7 +51,7 @@ export function ListPosts() {
         />
       )}
       <div className="container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post) => (
+        {posts.map((post: any) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>

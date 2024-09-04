@@ -73,7 +73,9 @@ export function DeletePost() {
           <p>{post.your_text}</p>
         </div>
         <div className="flex">
-          <Button fullWidth={true}>Não</Button>
+          <Button fullWidth={true} onClick={() => navigate(routes.posts)}>
+            Não
+          </Button>
           <Button fullWidth={true} onClick={deletePost}>
             Sim
           </Button>
