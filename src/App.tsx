@@ -13,6 +13,7 @@ import {
   ListPosts,
   PostForm,
   DeletePost,
+  Profile,
 } from "pages";
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
             <Route path={routes.posts} element={<ListPosts />} />
             <Route path={routes.editPost} element={<PostForm />} />
             <Route path={routes.deletePost} element={<DeletePost />} />
+            <Route path={routes.profile} element={<Profile />} />
           </Routes>
         </div>
         <Footer />
