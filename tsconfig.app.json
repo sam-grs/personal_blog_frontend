@@ -27,7 +27,8 @@
       "models/*": ["models/*"],
       "contexts/*": ["contexts/*"],
       "services/*": ["services/*"],
-      "routes/*": ["routes/*"]
+      "routes/*": ["routes/*"],
+      "utils/*": ["utils/*"]
     }
   },
   "include": ["src"]
