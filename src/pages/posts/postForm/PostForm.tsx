@@ -11,7 +11,7 @@ const initialValues = {
   id: "0",
   title: "",
   your_text: "",
-  date: "",
+  date_time: new Date(),
   theme: null,
   user: null,
 };
@@ -32,6 +32,7 @@ export function PostForm() {
       findPostId(id);
     }
 
+    // será que precisa?
     if (theme.id !== "0") {
       setPost({
         ...post,
@@ -41,7 +42,7 @@ export function PostForm() {
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.home);
+      navigate(routes.login);
     }
   }, [id, theme, token]);
 
@@ -66,6 +67,15 @@ export function PostForm() {
       headers: {
         Authorization: token,
       },
+    });
+  }
+
+  function updateState(e: ChangeEvent<HTMLInputElement>) {
+    setPost({
+      ...post,
+      [e.target.name]: e.target.value,
+      theme: theme,
+      user: user,
     });
   }
 
@@ -120,6 +130,7 @@ export function PostForm() {
             placeholder="Digite o título da postagem"
             name="title"
             value={post.title}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => updateState(e)}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -127,6 +138,7 @@ export function PostForm() {
             placeholder="Digite o texto da postagem"
             name="your_text"
             value={post.your_text}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => updateState(e)}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -137,7 +149,7 @@ export function PostForm() {
             className="border p-2 border-slate-800 rounded"
             onChange={(e) => findThemeId(e.currentTarget.value)}
           >
-            <option value="" selected disabled>
+            <option defaultValue="" disabled>
               Selecione um tema
             </option>
 
