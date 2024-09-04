@@ -21,11 +21,11 @@ export function DeletePost() {
     }
 
     if (id !== undefined) {
-      buscarPorId(id);
+      findId(id);
     }
   }, [id, token]);
 
-  async function buscarPorId(id: string) {
+  async function findId(id: string) {
     try {
       await find(`/postagens/${id}`, setPost, {
         headers: {
