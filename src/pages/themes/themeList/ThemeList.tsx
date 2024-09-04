@@ -15,7 +15,8 @@ export function ThemeList() {
   const token = user.token;
 
   useEffect(() => {
-    if (!themes.length) findId(setThemes, token);
+    // mudar o nome para findThemes
+    findId(setThemes, token);
 
     if (token === "") {
       alert("Você precisa estar logado");

@@ -8,7 +8,14 @@ import "./PostModal.css";
 export function PostModal() {
   return (
     <>
-      <Popup trigger={<Button>Nova postagem</Button>} modal>
+      <Popup
+        trigger={
+          <div>
+            <Button>Nova postagem</Button>
+          </div>
+        }
+        modal
+      >
         <div>
           <PostForm />
         </div>
