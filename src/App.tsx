@@ -8,8 +8,11 @@ import {
   Login,
   Register,
   ThemeList,
-  FormTheme,
+  ThemeForm,
   DeleteTheme,
+  ListPosts,
+  PostForm,
+  DeletePost,
 } from "pages";
 
 export default function App() {
@@ -20,13 +23,17 @@ export default function App() {
         {/* Define o tamanho default da page */}
         <div className="min-h-[80vh]">
           <Routes>
+            <Route path={routes.initial} element={<Login />} />
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.register} element={<Register />} />
             <Route path={routes.login} element={<Login />} />
             <Route path={routes.themes} element={<ThemeList />} />
-            <Route path={routes.themesRegistration} element={<FormTheme />} />
-            <Route path={routes.editTheme} element={<FormTheme />} />
+            <Route path={routes.themesRegistration} element={<ThemeForm />} />
+            <Route path={routes.editTheme} element={<ThemeForm />} />
             <Route path={routes.deleteTheme} element={<DeleteTheme />} />
+            <Route path={routes.posts} element={<ListPosts />} />
+            <Route path={routes.editPost} element={<PostForm />} />
+            <Route path={routes.deletePost} element={<DeletePost />} />
           </Routes>
         </div>
         <Footer />

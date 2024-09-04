@@ -18,11 +18,7 @@ export function Header() {
         Blog Pessoal
       </Link>
 
-      {user.token === "" ? (
-        <div className="flex gap-4">
-          <Link to={routes.login}>Logar</Link>
-        </div>
-      ) : (
+      {user.token !== "" && (
         <div className="flex gap-4">
           <Link to={routes.posts}>Postagens</Link>
           <Link to={routes.themes}>Temas</Link>
