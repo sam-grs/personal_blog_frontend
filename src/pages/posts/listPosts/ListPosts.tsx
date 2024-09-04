@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { PostCard } from "../postCard";
@@ -14,14 +14,18 @@ export function ListPosts() {
   const { user, handleLogout } = useContext(AuthContext);
   const token = user.token;
 
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
+
   useEffect(() => {
     findPost();
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.login);
+      back();
     }
-  }, [token, posts.length]);
+  }, [token, back]);
 
   async function findPost() {
     try {

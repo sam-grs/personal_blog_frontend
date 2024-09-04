@@ -9,7 +9,7 @@ export async function deleteItem(token: string, id: string = "") {
     });
 
     alert("Tema apagado com sucesso");
-  } catch (error) {
+  } catch {
     alert("Erro ao apagar o Tema");
   }
 }

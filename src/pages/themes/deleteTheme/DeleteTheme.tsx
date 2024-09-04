@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Theme } from "models";
@@ -12,9 +12,11 @@ export function DeleteTheme() {
   const { id } = useParams<{ id: string }>();
   const [theme, setTheme] = useState<Theme>({} as Theme);
   const { user, handleLogout } = useContext(AuthContext);
-
   const token = user.token;
-  const back = () => navigate(routes.themes);
+
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
 
   useEffect(() => {
     if (id !== undefined) {
@@ -23,13 +25,12 @@ export function DeleteTheme() {
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.login);
     }
-  }, [id, token]);
+  }, [id, token, handleLogout]);
 
   function deleteTheme() {
     deleteItem(token, id);
-    back();
+    navigate(routes.themes);
   }
 
   return (

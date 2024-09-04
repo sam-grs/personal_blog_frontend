@@ -1,4 +1,10 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button, Input } from "components";
@@ -26,6 +32,10 @@ export function PostForm() {
   const [post, setPost] = useState<Post>(initialValues);
   const loadingTheme = theme.about === "";
 
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
+
   useEffect(() => {
     findThemes();
     if (id !== undefined) {
@@ -42,7 +52,7 @@ export function PostForm() {
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.login);
+      back();
     }
   }, [id, theme, token]);
 

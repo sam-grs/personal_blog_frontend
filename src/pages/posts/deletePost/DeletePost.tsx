@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "components";
@@ -9,21 +9,14 @@ import { routes } from "routes";
 
 export function DeletePost() {
   const [post, setPost] = useState<Post>({} as Post);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { user, handleLogout } = useContext(AuthContext);
   const token = user.token;
 
-  useEffect(() => {
-    if (token === "") {
-      alert("Você precisa estar logado");
-      navigate(routes.login);
-    }
-
-    if (id !== undefined) {
-      findId(id);
-    }
-  }, [id, token]);
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
 
   async function findId(id: string) {
     try {
@@ -40,6 +33,17 @@ export function DeletePost() {
     }
   }
 
+  useEffect(() => {
+    if (token === "") {
+      alert("Você precisa estar logado");
+      back();
+    }
+
+    if (id !== undefined) {
+      findId(id);
+    }
+  }, [id, token, back]);
+
   async function deletePost() {
     try {
       await del(`/postagens/${id}`, {
@@ -49,7 +53,7 @@ export function DeletePost() {
       });
 
       alert("Postagem apagada com sucesso");
-    } catch (error) {
+    } catch {
       alert("Erro ao apagar a Postagem");
     }
 

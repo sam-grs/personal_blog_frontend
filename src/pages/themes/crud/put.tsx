@@ -4,8 +4,8 @@ import { update } from "services";
 export async function edit(
   theme: Theme,
   token: string,
-  set: Function,
-  handleLogout: Function,
+  set: (data: any) => void,
+  handleLogout: () => void,
   navigate?: any
 ) {
   try {

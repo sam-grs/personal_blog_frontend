@@ -1,5 +1,5 @@
 import { DNA } from "react-loader-spinner";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Theme } from "models";
@@ -14,15 +14,19 @@ export function ThemeList() {
   const { user } = useContext(AuthContext);
   const token = user.token;
 
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
+
   useEffect(() => {
     // mudar o nome para findThemes
     findId(setThemes, token);
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.login);
+      back();
     }
-  }, [token, themes.length]);
+  }, [token, back]);
 
   return (
     <>

@@ -3,9 +3,9 @@ import { create } from "services";
 
 export async function post(
   theme: Theme,
-  set: Function,
+  set: (data: any) => void,
   token: string,
-  handleLogout: Function
+  handleLogout: () => void
 ) {
   try {
     await create(`/temas`, theme, set, {

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "contexts/AuthContext";
@@ -8,9 +8,13 @@ export function Profile() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
+
   useEffect(() => {
     if (user.token === "") {
-      navigate(routes.home);
+      back();
     }
   }, [user.token]);
 

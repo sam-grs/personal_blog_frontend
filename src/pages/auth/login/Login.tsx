@@ -1,23 +1,15 @@
 import { RotatingLines } from "react-loader-spinner";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { ChangeEvent, useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Input, Button } from "components";
 import { UserLogin } from "models";
 import { AuthContext } from "contexts";
-import { routes } from "routes";
 
 export function Login() {
-  const navigate = useNavigate();
   // pode dar erro de uncontroled
   const [userLogin, setUserLogin] = useState<UserLogin>({} as UserLogin);
-  const { user, handleLogin, isLoading } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (user.token !== "") {
-      navigate(routes.home);
-    }
-  }, [user]);
+  const { handleLogin, isLoading } = useContext(AuthContext);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setUserLogin({

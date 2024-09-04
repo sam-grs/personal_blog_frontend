@@ -1,4 +1,10 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Theme } from "models";
@@ -14,6 +20,10 @@ export function ThemeForm() {
   const { user, handleLogout } = useContext(AuthContext);
   const token = user.token;
 
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
+
   useEffect(() => {
     if (id !== undefined) {
       findId(setTheme, token, id, handleLogout);
@@ -21,9 +31,9 @@ export function ThemeForm() {
 
     if (token === "") {
       alert("Você precisa estar logado");
-      navigate(routes.login);
+      back();
     }
-  }, [id, token]);
+  }, [id, token, handleLogout, back]);
 
   function updateState(e: ChangeEvent<HTMLInputElement>) {
     setTheme({

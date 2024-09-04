@@ -1,5 +1,11 @@
 import { Input, Button } from "components";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User } from "models";
 import { auth } from "services";
@@ -20,11 +26,15 @@ export function Register() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<User>(initialValues);
 
+  const back = useCallback(() => {
+    navigate(routes.login);
+  }, [navigate]);
+
   useEffect(() => {
     if (user.id !== "0") {
-      navigate(routes.login);
+      back();
     }
-  }, [!!user]);
+  }, [user, back]); // ver se vai dar problema
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setUser({
@@ -46,7 +56,7 @@ export function Register() {
       try {
         await auth(`/usuarios/cadastrar`, user, setUser);
         alert("Usuário cadastrado!");
-      } catch (err) {
+      } catch {
         alert("Erro ao cadastrar o usuário!");
       }
     } else {

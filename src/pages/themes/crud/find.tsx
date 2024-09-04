@@ -1,7 +1,7 @@
 import { find } from "services";
 
 export async function findId(
-  set: Function,
+  set: (data: any) => void,
   token: string,
   id: string = "",
   handleLogout?: any
