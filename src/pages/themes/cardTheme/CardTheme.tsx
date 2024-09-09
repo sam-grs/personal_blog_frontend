@@ -17,10 +17,10 @@ export function CardTheme({ theme }: ThemeProps) {
       </p>
       <div className="grid grid-cols-2 gap-5 mt-5">
         <Link to={`/edit-theme/${theme.id}`}>
-          <Button fullWidth={true}>Editar</Button>
+          <Button className="w-full">Editar</Button>
         </Link>
         <Link to={`/delete-theme/${theme.id}`}>
-          <Button fullWidth={true}>Deletar</Button>
+          <Button className="w-full">Deletar</Button>
         </Link>
       </div>
     </div>

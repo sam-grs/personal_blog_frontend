@@ -1,11 +1,10 @@
-import { FC } from "react";
+import { Link } from "react-router-dom";
 
 import { Button } from "components";
 import { ListPosts, PostModal } from "../posts";
-import { Link } from "react-router-dom";
 import { routes } from "routes";
 
-export const Home: FC = () => {
+export function Home() {
   return (
     <>
       <div className="bg-indigo-700 flex justify-center">
@@ -34,4 +33,4 @@ export const Home: FC = () => {
       <ListPosts />
     </>
   );
-};
+}

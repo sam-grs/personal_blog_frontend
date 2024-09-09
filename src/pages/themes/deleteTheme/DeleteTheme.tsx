@@ -47,10 +47,10 @@ export function DeleteTheme() {
         </header>
         <p className="p-8 text-3xl bg-slate-200 h-full">{theme.about}</p>
         <div className="flex">
-          <Button onClick={back} fullWidth={true}>
+          <Button onClick={back} className="w-full">
             Não
           </Button>
-          <Button onClick={deleteTheme} fullWidth={true}>
+          <Button onClick={deleteTheme} className="w-full">
             Sim
           </Button>
         </div>
