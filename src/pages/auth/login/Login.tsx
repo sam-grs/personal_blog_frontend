@@ -2,9 +2,9 @@ import { RotatingLines } from "react-loader-spinner";
 import { ChangeEvent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Input, Button } from "components";
 import { UserLogin } from "models";
 import { AuthContext } from "contexts";
+import { Button, Card, CardContent, CardTitle, Input } from "components";
 
 export function Login() {
   // pode dar erro de uncontroled
@@ -24,46 +24,52 @@ export function Login() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 h-screen">
-      <h1 className="text-3xl font-semibold mb-3">Login</h1>
-      <form
-        className="flex flex-col w-full max-w-xs gap-4"
-        onSubmit={handleSubmit}
-      >
-        <Input
-          name="user"
-          type="email"
-          placeholder="Email"
-          value={userLogin.user || ""}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Senha"
-          value={userLogin.password || ""}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
-        <Button type="submit">
-          {isLoading ? (
-            <RotatingLines
-              strokeColor="white"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="24"
-              visible={true}
+    <div className="flex justify-center items-center h-screen bg-pink">
+      <Card className="w-full max-w-[350px]">
+        <CardTitle className="text-dark_purple text-center text-3xl">
+          Login
+        </CardTitle>
+        <CardContent>
+          <form
+            className="flex flex-col w-full max-w-xs gap-4"
+            onSubmit={handleSubmit}
+          >
+            <Input
+              name="user"
+              type="email"
+              placeholder="Email"
+              value={userLogin.user || ""}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
             />
-          ) : (
-            <span>Entrar</span>
-          )}
-        </Button>
-      </form>
-      <p>
-        Não possui uma conta?{" "}
-        <Link to="/register" className="text-indigo-700 hover:underline">
-          Cadastrar
-        </Link>
-      </p>
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              value={userLogin.password || ""}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+            />
+            <p className="text-center text-dark_purple">
+              Não possui uma conta?{" "}
+              <Link to="/register" className="text-purple hover:underline">
+                Cadastrar
+              </Link>
+            </p>
+            <Button type="submit">
+              {isLoading ? (
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="24"
+                  visible={true}
+                />
+              ) : (
+                <span>Entrar</span>
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
