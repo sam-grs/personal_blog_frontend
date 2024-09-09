@@ -1,28 +1,25 @@
-import { ChangeEventHandler, FC } from "react";
+import * as React from "react";
 
-type InputProps = {
-  name: string;
-  type?: "text" | "email" | "password" | "date" | "number";
-  placeholder: string;
-  value?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-};
+import { cn } from "lib/utils";
 
-export const Input: FC<InputProps> = ({
-  name,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-}) => {
-  return (
-    <input
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      className="py-2 px-4 border border-black rounded"
-    />
-  );
-};
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-dark_purple bg-transparent px-3 py-1 focus:placeholder-dark_purple text-sm shadow-sm file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:outline-none focus:border-dark_purple focus:border-2 disabled:opacity-50",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Input.displayName = "Input";
+
+export { Input };
