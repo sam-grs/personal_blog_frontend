@@ -77,10 +77,10 @@ export function DeletePost() {
           <p>{post.your_text}</p>
         </div>
         <div className="flex">
-          <Button fullWidth={true} onClick={() => navigate(routes.posts)}>
+          <Button className="w-full" onClick={() => navigate(routes.posts)}>
             Não
           </Button>
-          <Button fullWidth={true} onClick={deletePost}>
+          <Button className="w-full" onClick={deletePost}>
             Sim
           </Button>
         </div>
