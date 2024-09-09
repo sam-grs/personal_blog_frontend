@@ -28,7 +28,8 @@
       "contexts/*": ["contexts/*"],
       "services/*": ["services/*"],
       "routes/*": ["routes/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "lib/*": ["lib/*"]
     }
   },
   "include": ["src"]

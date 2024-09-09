@@ -14,6 +14,7 @@ export default defineConfig({
       services: path.resolve(__dirname, "./src/services"),
       routes: path.resolve(__dirname, "./src/routes"),
       utils: path.resolve(__dirname, "./src/utils"),
+      lib: path.resolve(__dirname, "./src/lib"),
     },
   },
 });
