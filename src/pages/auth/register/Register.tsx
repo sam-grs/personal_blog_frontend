@@ -1,4 +1,3 @@
-import { Input, Button } from "components";
 import {
   ChangeEvent,
   FormEvent,
@@ -7,16 +6,18 @@ import {
   useState,
 } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
+
 import { User } from "models";
 import { auth } from "services";
-import { RotatingLines } from "react-loader-spinner";
 import { routes } from "routes";
+import { Input, Button, Card, CardTitle, CardContent } from "components";
 
 const initialValues = {
   id: "0",
   name: "",
   user: "",
-  photo: "",
+  photo: "-",
   password: "",
 };
 
@@ -69,65 +70,65 @@ export function Register() {
   }
 
   return (
-    <div className="flex flex-col justify-center h-screen items-center gap-4">
-      <h1 className="text-3xl font-semibold mb-3">Cadastro</h1>
-      <form
-        className="flex flex-col w-full max-w-xs gap-4"
-        onSubmit={handleSubmit}
-      >
-        <Input
-          name="name"
-          placeholder="Nome"
-          value={user.name}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
-        <Input
-          name="user"
-          type="email"
-          placeholder="Email"
-          value={user.user}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
-        <Input
-          name="photo"
-          placeholder="Foto"
-          value={user.photo}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Senha"
-          value={user.password}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
-        <Input
-          name="savePassword"
-          type="password"
-          placeholder="Confirmar Senha"
-          value={savePassword}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleSavePassword(e)}
-        />
-        <Link to={routes.login}>
-          <Button color="text-indigo-700" fullWidth={true} background="none">
-            Voltar
-          </Button>
-        </Link>
-
-        <Button type="submit">
-          {isLoading ? (
-            <RotatingLines
-              strokeColor="white"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="24"
-              visible={true}
+    <div className="flex justify-center items-center h-screen bg-pink">
+      <Card className="w-full max-w-[350px]">
+        <CardTitle className="text-dark_purple text-center text-3xl">
+          Cadastro
+        </CardTitle>
+        <CardContent>
+          <form
+            className="flex flex-col w-full max-w-xs gap-4"
+            onSubmit={handleSubmit}
+          >
+            <Input
+              name="name"
+              placeholder="Nome"
+              value={user.name}
+              onChange={handleChange}
             />
-          ) : (
-            <span>Cadastrar</span>
-          )}
-        </Button>
-      </form>
+            <Input
+              name="user"
+              type="email"
+              placeholder="Email"
+              value={user.user}
+              onChange={handleChange}
+            />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              value={user.password}
+              onChange={handleChange}
+            />
+            <Input
+              name="savePassword"
+              type="password"
+              placeholder="Confirmar Senha"
+              value={savePassword}
+              onChange={handleSavePassword}
+            />
+            <Link to={routes.login}>
+              <Button variant="outline" className="w-full">
+                Voltar
+              </Button>
+            </Link>
+
+            <Button type="submit">
+              {isLoading ? (
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="24"
+                  visible={true}
+                />
+              ) : (
+                <span>Cadastrar</span>
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
