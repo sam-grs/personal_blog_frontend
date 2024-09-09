@@ -13,9 +13,13 @@ export function Header() {
   }
 
   return (
-    <div className="flex justify-between p-4 bg-indigo-700 text-white w-full text-lg">
-      <Link to={routes.home} className="text-2xl font-bold">
-        Blog Pessoal
+    <div className="flex justify-between items-center h-[100px] px-10 bg-dark_purple text-purple w-full text-lg">
+      <Link to={routes.home}>
+        <img
+          className="w-[70px] rounded-full"
+          src="src/assets/logo_naut.png"
+          alt="Logo de um astronauta"
+        />
       </Link>
 
       {user.token !== "" && (
